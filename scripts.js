@@ -1,28 +1,63 @@
-const selections = ["rock", "paper", "scissor"];
-const playerSelection = prompt("ROCK! PAPERS! SCISSORS! ");
-const computerSelection = computerPlay();
+const selections = ["pedra", "papel", "tesoura"];
+
+var computerSelection = computerPlay();
+var playerScore = 0;
+var computerScore = 0;
+var roundWinner = Boolean;
 
 function computerPlay() {
+    let selections = ["pedra", "papel", "tesoura"];
     return selections[Math.floor(Math.random() * selections.length)]; /*  */
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound() {
+    var playerSelection = prompt("Pedra! Papel! Tesoura! Vence quem ganhar 5!");
     let humanPlay = playerSelection.toLowerCase();
-    if (playerSelection === computerSelection) {
-        return "It's a draw!";
-    } else if (humanPlay === "rock" && computerSelection === "scissor") {
-        console.log("YOU WON!");
-    } else if (humanPlay === "scissor" && computerSelection === "paper") {
-        console.log("YOU WON!");
-    } else if (humanPlay === "paper" && computerSelection === "rock") {
-        console.log("YOU WON!");
-    } else if (humanPlay === "scissor" && computerSelection === "rock") {
-        console.log("You lost.");
-    } else if (humanPlay === "paper" && computerSelection === "scissor") {
-        console.log("You lost.");
-    } else if (humanPlay === "rock" && computerSelection === "paper") {
-        console.log("You lost.");
+    computerSelection = computerPlay();
+    result = '';
+
+    if (playerSelection == computerSelection) {
+        result = 'É um empate!'
+        return roundWinner = false;
+    } else if ((humanPlay == "pedra" && computerSelection == "tesoura") || 
+                (humanPlay == "tesoura" && computerSelection == "papel") || 
+                (humanPlay == "papel" && computerSelection == "pedra")) {
+        playerScore++;
+        result = `${playerScore} - ${computerScore} Você ganhou a rodada! ${playerSelection} vence ${computerSelection}.`;
+        return roundWinner = true;
+        
+    } else if ((humanPlay == "tesoura" && computerSelection == "pedra") || 
+                (humanPlay == "papel" && computerSelection == "tesoura") || 
+                (humanPlay == "pedra" && computerSelection == "papel")) {
+        computerScore++;
+        result = `${playerScore} - ${computerScore} Você perdeu a rodada.lost the round. ${playerSelection} perde para ${computerSelection}.`;
+        return roundWinner = false;
+
     } else {
-        console.log("The options are: rock, paper or scissor.")
+        result = "As opções são: pedra, papel ou tesoura.";
+        return result;
     }
 }
+
+function game () {
+    for (let i = 0; i < 20; i++) {        
+        playRound(computerSelection);
+
+        if (roundWinner === true) {
+            console.log(result);
+            if (playerScore == 5) {
+                console.log(`VOCÊ VENCEU!!! ${playerScore} - ${computerScore}`);
+                break;
+            }
+        } else if (roundWinner === false) {
+            console.log(result);
+            if (computerScore == 5) {
+                console.log(`Você perdeu. ${playerScore} - ${computerScore}`);
+                break;
+        }
+        } else {
+            console.log(strerror);
+        }
+    }
+}
+game();
