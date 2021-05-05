@@ -1,7 +1,7 @@
 const selections = ["pedra", "papel", "tesoura"];
 
 var computerSelection = computerPlay();
-var playerScore = 0;
+var humanScore = 0;
 var computerScore = 0;
 var roundWinner = Boolean;
 
@@ -22,15 +22,15 @@ function playRound() {
     } else if ((humanPlay == "pedra" && computerSelection == "tesoura") || 
                 (humanPlay == "tesoura" && computerSelection == "papel") || 
                 (humanPlay == "papel" && computerSelection == "pedra")) {
-        playerScore++;
-        result = `${playerScore} - ${computerScore} Você ganhou a rodada! ${playerSelection} vence ${computerSelection}.`;
+        humanScore++;
+        result = `${humanScore} - ${computerScore} Você ganhou a rodada! ${playerSelection} vence ${computerSelection}.`;
         return roundWinner = true;
         
     } else if ((humanPlay == "tesoura" && computerSelection == "pedra") || 
                 (humanPlay == "papel" && computerSelection == "tesoura") || 
                 (humanPlay == "pedra" && computerSelection == "papel")) {
         computerScore++;
-        result = `${playerScore} - ${computerScore} Você perdeu a rodada.lost the round. ${playerSelection} perde para ${computerSelection}.`;
+        result = `${humanScore} - ${computerScore} Você perdeu a rodada. ${playerSelection} perde para ${computerSelection}.`;
         return roundWinner = false;
 
     } else {
@@ -45,14 +45,14 @@ function game () {
 
         if (roundWinner === true) {
             console.log(result);
-            if (playerScore == 5) {
-                console.log(`VOCÊ VENCEU!!! ${playerScore} - ${computerScore}`);
+            if (humanScore == 5) {
+                console.log(`VOCÊ VENCEU!!! ${humanScore} - ${computerScore}`);
                 break;
             }
         } else if (roundWinner === false) {
             console.log(result);
             if (computerScore == 5) {
-                console.log(`Você perdeu. ${playerScore} - ${computerScore}`);
+                console.log(`Você perdeu. ${humanScore} - ${computerScore}`);
                 break;
         }
         } else {
