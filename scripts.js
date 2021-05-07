@@ -12,7 +12,10 @@ function computerPlay() {
 
 function playRound() {
     var playerSelection = prompt("Pedra! Papel! Tesoura! Vence quem ganhar 5!");
-    let humanPlay = playerSelection.toLowerCase();
+    if (playerSelection === null) {
+        console.log(`Tchau`);
+    } else {
+        let humanPlay = playerSelection.toLowerCase();
     computerSelection = computerPlay();
     result = '';
 
@@ -32,11 +35,9 @@ function playRound() {
         computerScore++;
         result = `${humanScore} - ${computerScore} Você perdeu a rodada. ${playerSelection} perde para ${computerSelection}.`;
         return isWinner = false;
-
-    } else {
-        result = "As opções são: pedra, papel ou tesoura.";
-        return result;
+    } 
     }
+    
 }
 
 function game () {
@@ -49,14 +50,12 @@ function game () {
                 console.log(`VOCÊ VENCEU!!! ${humanScore} - ${computerScore}`);
                 break;
             }
-        } else if (isWinner === false) {
+        } else {
             console.log(result);
             if (computerScore == 5) {
                 console.log(`Você perdeu. ${humanScore} - ${computerScore}`);
                 break;
-        }
-        } else {
-            console.log(strerror);
+            }
         }
     }
 }
